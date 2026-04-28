@@ -217,7 +217,9 @@
         .d-item:last-child { border-bottom: none; }
 
         .d-day { width: 58px; font-size: 14px; font-weight: 600; }
-        .d-icon { font-size: 24px; margin: 0 10px; }
+        .d-icon-col { display: flex; flex-direction: column; align-items: center; margin: 0 8px; min-width: 52px; }
+        .d-icon { font-size: 24px; }
+        .d-icon-desc { font-size: 9px; opacity: 0.65; text-align: center; margin-top: 2px; line-height: 1.2; }
 
         .d-rainbar {
             flex: 1;
@@ -361,7 +363,7 @@
             border-radius: 12px;
             padding: 9px 8px;
             text-align: center;
-            min-width: 56px;
+            min-width: 70px;
             flex-shrink: 0;
         }
         .dh-item.current-h {
@@ -370,10 +372,9 @@
         }
 
         .dh-time { font-size: 10px; opacity: 0.62; margin-bottom: 3px; }
-        .dh-icon { font-size: 17px; margin-bottom: 3px; }
+        .dh-icon { font-size: 17px; margin-bottom: 2px; }
+        .dh-desc { font-size: 9px; opacity: 0.70; margin-bottom: 3px; line-height: 1.2; }
         .dh-temp { font-size: 14px; font-weight: 600; }
-        .dh-rain { font-size: 10px; opacity: 0.6; margin-top: 3px; }
-        .dh-wind { font-size: 10px; opacity: 0.5; margin-top: 2px; }
         .dh-hum  { font-size: 10px; opacity: 0.5; margin-top: 2px; }
 
         /* Settings button */
@@ -688,9 +689,12 @@ function render(data, locName) {
         return `
         <div class="d-item" id="d-row-${i}" onclick="toggleDay(${i})">
             <div class="d-day">${i === 0 ? 'วันนี้' : THAI_DAYS[new Date(t+'T12:00').getDay()]}</div>
-            <div class="d-icon">${dw.icon}</div>
+            <div class="d-icon-col">
+                <div class="d-icon">${dw.icon}</div>
+                <div class="d-icon-desc">${dw.th}</div>
+            </div>
             <div class="d-rainbar">
-                <span style="font-size:11px;opacity:.6">💧</span>
+                <span style="font-size:11px;opacity:.6">☔</span>
                 <div class="bar-bg"><div class="bar-fill" style="width:${rain}%"></div></div>
                 <span class="d-rain-pct">ฝน ${rain}%</span>
             </div>
@@ -838,9 +842,8 @@ function buildDayHourly(data, dayIndex) {
         <div class="dh-item${isCur ? ' current-h' : ''}">
             <div class="dh-time">${label}</div>
             <div class="dh-icon">${hw.icon}</div>
+            <div class="dh-desc">${hw.th}</div>
             <div class="dh-temp">${Math.round(temps[i])}°</div>
-            <div class="dh-rain">💧${rains[i]}%</div>
-            <div class="dh-wind">💨${Math.round(winds[i])}</div>
             <div class="dh-hum">💦${hums[i]}%</div>
         </div>`;
     }).join('');
