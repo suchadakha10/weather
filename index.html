@@ -693,8 +693,7 @@ function render(data, locName) {
                 <div class="d-icon">${dw.icon}</div>
                 <div class="d-icon-desc">${dw.th}</div>
             </div>
-            <div class="d-rainbar">
-                <span style="font-size:11px;opacity:.6">☔</span>
+            <div class="d-rainbar">               
                 <div class="bar-bg"><div class="bar-fill" style="width:${rain}%"></div></div>
                 <span class="d-rain-pct">ฝน ${rain}%</span>
             </div>
@@ -844,7 +843,7 @@ function buildDayHourly(data, dayIndex) {
             <div class="dh-icon">${hw.icon}</div>
             <div class="dh-desc">${hw.th}</div>
             <div class="dh-temp">${Math.round(temps[i])}°</div>
-            <div class="dh-hum">💦${hums[i]}%</div>
+            <div class="dh-hum">💧${hums[i]}%</div>
         </div>`;
     }).join('');
 
